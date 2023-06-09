@@ -63,7 +63,7 @@ pipeline {
                 artifacts: [
                     [artifactId: 'carritocompra',
                     classifier: '',
-                    file: 'target/carritocompra-0.0.1.jar',
+                    file: 'target/carritocompra-0.0.1-SNAPSHOT.jar',
                     type: 'jar'],
                     [artifactId: 'carritocompra',
                     classifier: '',
