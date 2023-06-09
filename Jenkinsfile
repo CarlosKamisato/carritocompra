@@ -50,13 +50,42 @@ pipeline {
         }
     }
 
-        stage('Quality Gate'){
-            steps{
-                timeout(time:1, unit:'HOURS'){
-                    waitForQualityGate abortPipeline:true
-                }
+    stage('Nexus Upload') {
+        steps {
+            nexusArtifactUploader(
+                nexusVersion: 'nexus3',
+                protocol: 'http',
+                nexusUrl: 'nexus:8081',
+                groupId: 'cl.awakelab.junitapp',
+                version: '0.0.1-SNAPSHOT',
+                repository: 'maven-snapshots',
+                credentialsId: 'nex',
+                artifacts: [
+                    [artifactId: 'carritocompra',
+                    classifier: '',
+                    file: 'target/carritocompra-0.0.1.jar',
+                    type: 'jar'],
+                    [artifactId: 'carritocompra',
+                    classifier: '',
+                    file: 'pom.xml',
+                    type: 'pom']
+                ]
+            )
+        }
+    }
+
+
+
+    stage('Quality Gate'){
+        steps{
+            timeout(time:1, unit:'HOURS'){
+                waitForQualityGate abortPipeline:true
             }
         }
+    }
+
+
+
 
     }
     post {
