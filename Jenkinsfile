@@ -45,7 +45,7 @@ pipeline {
     stage('Sonar Scanner') {
         steps {
             withSonarQubeEnv('SonarQube') { 
-                sh 'mvn sonar:sonar -Dsonar.projectKey=GS -Dsonar.sources=src/main/java/com/kibernumacademy/miapp -Dsonar.tests=src/test/java/com/kibernumacademy/miapp -Dsonar.java.binaries=.'
+                sh 'mvn sonar:sonar -Dsonar.projectKey=GS -Dsonar.sources=src/main/java/app -Dsonar.tests=src/test/java/app -Dsonar.java.binaries=.'
             }
         }
     }
