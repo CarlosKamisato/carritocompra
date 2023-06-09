@@ -15,7 +15,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/CarlosKamisato/control.git'
+                git branch: 'main', url: 'https://github.com/CarlosKamisato/carritocompra.git'
             }
         }
 
@@ -62,7 +62,7 @@ pipeline {
     post {
         always {
             echo 'Slack Notification'
-            slackSend channel: '#integracion',
+            slackSend channel: '#carritocompra',
                 color: COLOR_MAP[currentBuild.currentResult],
                 message: "*${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More Info at: ${env.BUILD_URL}"
         }
